@@ -1,0 +1,5 @@
+- homebrew: update_homebrew=yes upgrade_all=yes
+
+- homebrew: name=tmux options=HEAD
+
+- homebrew: name=ripgrep options=HEAD

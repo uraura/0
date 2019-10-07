@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  ansible:
+    build: .
+    volumes:
+      - .:/src/:ro
+      - ./hosts:/etc/ansible/hosts:ro
+      - ./config:/etc/ansible/config:ro
+      - ~/.ssh/id_ed25519:/root/.ssh/id_ed25519:ro
+    environment:
+      - ANSIBLE_PARAMIKO_HOST_KEY_AUTO_ADD=True
+      - ANSIBLE_USE_PERSISTENT_CONNECTIONS=True
+      - ANSIBLE_REMOTE_USER=${USER}
+      - ANSIBLE_DISPLAY_ARGS_TO_STDOUT=True
