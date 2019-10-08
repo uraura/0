@@ -3,3 +3,10 @@
 - homebrew: name=tmux options=HEAD
 
 - homebrew: name=ripgrep options=HEAD
+
+- homebrew: name=terraform@0.11
+- homebrew: name=terraform options=HEAD
+
+- homebrew: name=zsh options=HEAD
+
+- homebrew: name=direnv options=HEAD
