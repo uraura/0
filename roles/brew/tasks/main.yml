@@ -10,3 +10,5 @@
 - homebrew: name=zsh options=HEAD
 
 - homebrew: name=direnv options=HEAD
+
+- homebrew_cask: name=alacritty options='appdir=~/Applications'
