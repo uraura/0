@@ -1,4 +1,8 @@
 - hosts: me
   roles:
-    - defaults
-    - brew
+    - role: defaults
+    - role: brew
+    - role: lang
+      vars:
+        os: darwin
+        arch: amd64

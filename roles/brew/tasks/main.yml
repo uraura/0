@@ -1,14 +1,16 @@
 - homebrew: update_homebrew=yes upgrade_all=yes
 
+- homebrew: name=zsh options=HEAD
 - homebrew: name=tmux options=HEAD
+
+- homebrew: name=git options=HEAD
+- homebrew: name=ghq options=HEAD
+
+- homebrew: name=direnv options=HEAD
 
 - homebrew: name=ripgrep options=HEAD
 
 - homebrew: name=terraform@0.11
 - homebrew: name=terraform options=HEAD
-
-- homebrew: name=zsh options=HEAD
-
-- homebrew: name=direnv options=HEAD
 
 - homebrew_cask: name=alacritty options='appdir=~/Applications'

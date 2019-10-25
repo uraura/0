@@ -1,0 +1,47 @@
+- set_fact:
+    xbuild_home: ~/.ghq/github.com/tagomoris/xbuild
+    lang_home: /usr/local/share/lang
+    install:
+      - lang: go
+        versions:
+          - 1.13.3
+          - 1.13.1
+      - lang: python
+        versions:
+          - 3.8.0
+          - 3.7.5
+          - 3.7.4
+      - lang: ruby
+        versions:
+          - 2.6.5 
+
+- git: 
+    repo: https://github.com/tagomoris/xbuild
+    dest: '{{ xbuild_home }}'
+
+- copy:
+    src: '{{ xbuild_home }}/{{ item }}-install'
+    dest: /usr/local/bin/
+    remote_src: yes
+    mode: 0755
+  loop: [ go, node, perl, php, python, ruby ]
+
+- file: path={{ lang_home }} state=directory
+
+- command: /usr/local/bin/{{ item.0.lang }}-install {{ item.1 }} {{ lang_home }}/{{ item.0.lang }}-{{ item.1 }} {{ os }} {{ arch }}
+  args:
+    creates: '{{ lang_home }}/{{ item.0.lang}}-{{ item.1 }}'
+  loop: "{{ install | subelements('versions') }}"
+  loop_control:
+    extended: yes
+    label: '{{ item.0.lang }} {{ item.1 }} {{ os }} {{ arch }}'
+
+- file:
+    path: '{{ lang_home }}/{{ item.0.lang }}-latest'
+    src: '{{ lang_home }}/{{ item.0.lang }}-{{ item.1 }}'
+    state: link
+  loop: "{{ install | subelements('versions') }}"
+  loop_control:
+    extended: yes
+    label: '{{ item.0.lang }} {{ item.1 }} {{ os }} {{ arch }}'
+  when: ansible_loop.first or item.0.lang != ansible_loop.previtem.0.lang
