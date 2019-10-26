@@ -6,6 +6,7 @@
         versions:
           - 1.13.3
           - 1.13.1
+          - 1.12.12
       - lang: python
         versions:
           - 3.8.0
@@ -20,11 +21,13 @@
     dest: '{{ xbuild_home }}'
 
 - copy:
-    src: '{{ xbuild_home }}/{{ item }}-install'
+    src: '{{ xbuild_home }}/{{ item.lang }}-install'
     dest: /usr/local/bin/
     remote_src: yes
     mode: 0755
-  loop: [ go, node, perl, php, python, ruby ]
+  loop: '{{ install }}'
+  loop_control:
+    label: '{{ item.lang }}'
 
 - file: path={{ lang_home }} state=directory
 
