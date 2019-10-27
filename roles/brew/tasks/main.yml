@@ -6,6 +6,9 @@
 - homebrew: name=git options=HEAD
 - homebrew: name=ghq options=HEAD
 
+- homebrew: name=bzip2 options=HEAD
+- homebrew: name=curl options=HEAD
+
 - homebrew: name=direnv options=HEAD
 
 - homebrew: name=ripgrep options=HEAD

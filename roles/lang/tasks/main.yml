@@ -7,6 +7,16 @@
           - 1.13.3
           - 1.13.1
           - 1.12.12
+      - lang: node
+        versions:
+          - v13.0.1
+          - v12.13.0
+      - lang: perl
+        versions:
+          - 5.30.0
+#      - lang: php
+#        versions:
+#          - 7.3.11
       - lang: python
         versions:
           - 3.8.0
@@ -31,13 +41,13 @@
 
 - file: path={{ lang_home }} state=directory
 
-- command: /usr/local/bin/{{ item.0.lang }}-install {{ item.1 }} {{ lang_home }}/{{ item.0.lang }}-{{ item.1 }} {{ os }} {{ arch }}
+- command: /usr/local/bin/{{ item.0.lang }}-install {{ item.1 }} {{ lang_home }}/{{ item.0.lang }}-{{ item.1 }} {{ opts[item.0.lang] | default('') }}
   args:
     creates: '{{ lang_home }}/{{ item.0.lang}}-{{ item.1 }}'
   loop: "{{ install | subelements('versions') }}"
   loop_control:
     extended: yes
-    label: '{{ item.0.lang }} {{ item.1 }} {{ os }} {{ arch }}'
+    label: '{{ item.0.lang }} {{ item.1 }} {{ opts[item.0.lang] | default("") }}'
 
 - file:
     path: '{{ lang_home }}/{{ item.0.lang }}-latest'
@@ -46,5 +56,5 @@
   loop: "{{ install | subelements('versions') }}"
   loop_control:
     extended: yes
-    label: '{{ item.0.lang }} {{ item.1 }} {{ os }} {{ arch }}'
+    label: '{{ item.0.lang }} {{ item.1 }} {{ opts[item.0.lang] | default("") }}' 
   when: ansible_loop.first or item.0.lang != ansible_loop.previtem.0.lang
