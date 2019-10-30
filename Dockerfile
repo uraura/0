@@ -4,4 +4,4 @@ WORKDIR /src
 RUN apk --no-cache add ansible
 
 ENTRYPOINT ["ansible"]
-CMD ["--version"]
+CMD ["--help"]
