@@ -12,6 +12,12 @@
 - homebrew: name=direnv options=HEAD
 
 - homebrew: name=ripgrep options=HEAD
+- homebrew: name=fd options=HEAD
+- homebrew: name=bat options=HEAD
+- homebrew: name=insect options=HEAD
+- homebrew: name=pastel options=HEAD
+- homebrew: name=hexyl options=HEAD
+- homebrew: name=diskus options=HEAD
 
 - homebrew: name=terraform@0.11
 - homebrew: name=terraform options=HEAD
