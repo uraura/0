@@ -1,4 +1,4 @@
-- homebrew: update_homebrew=yes upgrade_all=no
+- homebrew: update_homebrew=yes upgrade_all=yes
 
 - homebrew: name=zsh options=HEAD
 - homebrew: name=tmux options=HEAD
