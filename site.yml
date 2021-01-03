@@ -1,1 +1,19 @@
-- import_playbook: darwin.yml
+- hosts: all
+  tasks:
+    - community.general.homebrew: name={{ item }} state=upgraded upgrade_options=fetch-HEAD
+      loop:
+        - zsh
+        - tmux
+        - git
+      async: 300
+      poll: 0
+      register: brew_upgrade_jobs
+
+    - async_status:
+        jid: '{{ item.ansible_job_id }}'
+      retries: 100
+      delay: 3
+      loop: '{{ brew_upgrade_jobs.results }}'
+      register: brew_upgrade_result
+      until: brew_upgrade_result.finished
+

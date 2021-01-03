@@ -1,10 +1,10 @@
-- homebrew: update_homebrew=yes upgrade_all=yes
+- homebrew: update_homebrew=yes upgrade_all=no
 
-- homebrew: name=zsh options=HEAD
-- homebrew: name=tmux options=HEAD
+- homebrew: name=zsh state=upgraded options=HEAD
+- homebrew: name=tmux state=upgraded options=HEAD
 
 - homebrew: name=git options=HEAD
-- homebrew: name=ghq options=HEAD
+- homebrew: name=ghq state=upgraded options=HEAD
 
 - homebrew: name=bzip2 options=HEAD
 - homebrew: name=curl options=HEAD

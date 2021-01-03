@@ -4,6 +4,7 @@
     install:
       - lang: go
         versions:
+          - 1.14.1
           - 1.13.8
           - 1.13.3
           - 1.13.1
