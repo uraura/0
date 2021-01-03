@@ -6,6 +6,7 @@
         - tmux
         - git
         - ghq
+        - fzf
       async: 300
       poll: 0
       register: brew_upgrade_jobs
